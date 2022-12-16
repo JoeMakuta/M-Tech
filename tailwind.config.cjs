@@ -5,7 +5,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'MainFont': ['Manrope'],
+      },
+      backgroundImage: {
+        'login_background': "url('/src/assets/img/bg_m_tech.webp')",
+      }
+
+    },
   },
   plugins: [],
 }
