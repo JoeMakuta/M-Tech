@@ -3,9 +3,9 @@
 export const validateEmail = (email) => {
    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
    console.log(email);
-   if(regex.test(email)){
+   if(regex.test(email.trim())){
       return true
-   }else if(email == ''){
+   }else if(email.trim() == ''){
       return true
    }
    else{

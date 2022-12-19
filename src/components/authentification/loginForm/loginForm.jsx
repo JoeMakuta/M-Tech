@@ -5,13 +5,15 @@ import { UserContext } from '../../../App'
 import { useContext } from 'react'
 import { validateEmail } from '../../../validation/email'
 import { useEffect } from 'react'
+import { validatePassword } from '../../../validation/password'
 
 const LoginForm = () => {
 
    const { inputEmail, setInputEmail, inputPassword, setInputPassword } = useContext(UserContext)
 
    const [showPassword, setShowPassword] = useState(true)
-   const [emailValid, setEmailValid] = useState(null)
+   const [emailValid, setEmailValid] = useState(true)
+   const [passwordValid, setPasswordValid] = useState(true)
 
    const handlePassword = () => {
       showPassword ? setShowPassword(false) : setShowPassword(true)
@@ -34,7 +36,9 @@ const LoginForm = () => {
       setEmailValid(validateEmail(inputEmail))
    }, [inputEmail])
 
-
+   useEffect(() => {
+      setPasswordValid(validatePassword(inputPassword))
+   }, [inputPassword])
 
    return (
       <div className=" flex flex-col justify-start mt-[10vh] items-center gap-10 " >
@@ -56,7 +60,7 @@ const LoginForm = () => {
                <p className=' text-sm '>
                   Email :
                </p>
-               <div className={input_container + (emailValid ? null : " border-[1px] border-red-600 ")} >
+               <div className={input_container + (emailValid ? "border-[1px]" : " border-[1px] border-red-600 ")} >
                   <input
                      required
                      type="text"
@@ -65,14 +69,16 @@ const LoginForm = () => {
                      onChange={handleOnChangeEmail}
                   />
                </div>
-               {emailValid ? null :
-                  <p className=' text-xs text-red-600 ' >
-                     Veillez saisir un email valide
-                  </p>}
+               {
+                  emailValid ? null :
+                     <p className=' text-xs text-red-600 ' >
+                        Veillez saisir un email valide
+                     </p>
+               }
             </div>
             <div className=' flex flex-col gap-2 ' >
                <p className=' text-sm ' >Mot de passe :</p>
-               <div className={input_container + " pr-4 border-[1px] border-red-600"} >
+               <div className={input_container + (passwordValid ? " pr-4 border-[1px] " : " pr-4 border-[1px] border-red-600 ")} >
                   <input
                      required
                      className={input_style}
@@ -85,14 +91,17 @@ const LoginForm = () => {
                      {showPassword ? <AiOutlineEye className=' cursor-pointer ' size={30} color='#ADA2BF' /> : <AiOutlineEyeInvisible size={30} className=' cursor-pointer' color='#ADA2BF' />}
                   </div>
                </div>
-               <p className=' text-xs text-red-600 ' >
-                  Veillez saisir un mot de passe
-               </p>
+               {
+                  passwordValid ? null :
+                     <p className=' text-xs text-red-600 ' >
+                        Veillez saisir un mot de passe
+                     </p>
+               }
             </div>
 
-            <p className=' text-xs text-red-600 ' >
+            {/* <p className=' text-xs text-red-600 ' >
                Incorrect email or password
-            </p>
+            </p> */}
 
             <button
                type="submit"
