@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { button_style, input_container, input_style } from '../../../assets/styles/styles'
 
 const LoginForm = () => {
    const [showPassword, setShowPassword] = useState(true)
@@ -19,18 +20,18 @@ const LoginForm = () => {
             </p>
          </div>
          <form className=" flex flex-col w-[350px] gap-4 " >
-            <div className=" bg-white  border-black rounded-lg" >
+            <div className={input_container} >
                <input
                   required
                   type="text"
-                  className=" w-full h-14 rounded-lg outline-none bg-inherit p-4 text-sm"
+                  className={input_style}
                   placeholder="Nom d'utilisateur"
                />
             </div>
-            <div className="flex pr-4 justify-center items-center bg-white  border-black rounded-lg" >
+            <div className={input_container + ' pr-4'} >
                <input
                   required
-                  className=" w-full h-14 rounded-lg outline-none p-4 bg-inherit text-sm"
+                  className={input_style}
                   type={showPassword ? "password" : "text"}
                   placeholder="Mot de passe"
                />
@@ -48,15 +49,14 @@ const LoginForm = () => {
             </div>
             <button
                type="submit"
-               className=" w-full bg-amber-600 h-16 rounded-2xl " >
+               className={button_style} >
                Se connecter
             </button>
          </form>
          <div>
-            <p>Ou continuer avec</p>
+            {/* <p>Ou continuer avec</p> */}
          </div>
       </div>
    )
 }
-
 export default LoginForm
