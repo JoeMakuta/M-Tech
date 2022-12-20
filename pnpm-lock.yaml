@@ -8,12 +8,15 @@ specifiers:
   postcss: ^8.4.20
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-icons: ^4.7.1
+  react-router-dom: ^6.4.5
   tailwindcss: ^3.2.4
   vite: ^4.0.0
 
 dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.7.1_react@18.2.0
 
 devDependencies:
   '@types/react': 18.0.26
@@ -21,6 +24,7 @@ devDependencies:
   '@vitejs/plugin-react': 3.0.0_vite@4.0.0
   autoprefixer: 10.4.13_postcss@8.4.20
   postcss: 8.4.20
+  react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
   tailwindcss: 3.2.4_postcss@8.4.20
   vite: 4.0.0
 
@@ -509,6 +513,11 @@ packages:
       fastq: 1.14.0
     dev: true
 
+  /@remix-run/router/1.0.5:
+    resolution: {integrity: sha512-my0Mycd+jruq/1lQuO5LBB6WTlL/e8DTCYWp44DfMTDcXz8DcTlgF0ISaLsGewt+ctHN+yA8xMq3q/N7uWJPug==}
+    engines: {node: '>=14'}
+    dev: true
+
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
@@ -894,7 +903,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /magic-string/0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
@@ -1054,6 +1062,13 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+
+  /react-icons/4.7.1_react@18.2.0:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-refresh/0.14.0:
@@ -1061,12 +1076,34 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /react-router-dom/6.4.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-a7HsgikBR0wNfroBHcZUCd9+mLRqZS8R5U1Z1mzLWxFXEkUT3vR1XXmSIVoVpxVX8Bar0nQYYYc9Yipq8dWwAA==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.5
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router: 6.4.5_react@18.2.0
+    dev: true
+
+  /react-router/6.4.5_react@18.2.0:
+    resolution: {integrity: sha512-1RQJ8bM70YEumHIlNUYc6mFfUDoWa5EgPDenK/fq0bxD8DYpQUi/S6Zoft+9DBrh2xmtg92N5HMAJgGWDhKJ5Q==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.0.5
+      react: 18.2.0
+    dev: true
+
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-cache/1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -1113,7 +1150,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
