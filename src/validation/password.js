@@ -1,12 +1,10 @@
-
 export const validatePassword = (password) => {
-   if(password == ''){
-      return true
-   }else {
-      if(password.lenght <= 3)
-         return false
-      else{
-         return true
-      }
-   }
-}
+  const regex = /^(.{6,})$/;
+
+  if (password == "") return true;
+
+  if (regex.test(password)) return true;
+  else {
+    return false;
+  }
+};
