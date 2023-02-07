@@ -11,7 +11,7 @@ import { validateEmail } from "../../../validation/email";
 import { useEffect } from "react";
 import { validatePassword } from "../../../validation/password";
 
-const { SERVER_URI } = import.meta.env;
+const { VITE_SERVER_URI } = import.meta.env;
 
 const LoginForm = () => {
   const { inputEmail, setInputEmail, inputPassword, setInputPassword } =
@@ -33,8 +33,30 @@ const LoginForm = () => {
     setInputPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log(SERVER_URI);
+  const handleSubmit = async () => {
+    // check if the inputs are valid
+
+    if (emailValid && passwordValid) {
+      await fetch(VITE_SERVER_URI + "/admin/login", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          userUniqueIdentifier: inputEmail,
+          passWord: inputPassword,
+        }),
+      })
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   useEffect(() => {
@@ -72,7 +94,7 @@ const LoginForm = () => {
           >
             <input
               required
-              type="email"
+              type="text"
               className={input_style}
               placeholder="Nom d'utilisateur ou email"
               onChange={handleOnChangeEmail}
@@ -96,7 +118,7 @@ const LoginForm = () => {
           >
             <input
               required
-              className={input_style }
+              className={input_style}
               type={showPassword ? "password" : "text"}
               placeholder="**************"
               onChange={handleOnPassword}
