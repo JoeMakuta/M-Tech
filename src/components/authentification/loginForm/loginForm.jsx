@@ -73,7 +73,7 @@ const LoginForm = () => {
         <h1 className=" font-bold w-40 text-5xl tracking-tighter ">
           Salut encore!
         </h1>
-        <p className="text-sm w-[80vw]">
+        <p className="text-sm w-[80vw] sm:w-[50vw]">
           Bienvenu encore, vous nous aviez manqué!
         </p>
       </div>
