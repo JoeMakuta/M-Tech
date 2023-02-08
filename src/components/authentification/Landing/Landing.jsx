@@ -1,4 +1,5 @@
 import { UserContext } from "../../../App";
+import LoginForm from "../loginForm/loginForm";
 import LandingBottons from "./LandingBottons";
 import LandingPhoto from "./LandingPhoto";
 
@@ -9,7 +10,10 @@ const Landing = () => {
        "
     >
       <LandingPhoto />
-      <LandingBottons />
+      <div className=" flex flex-col " >
+        <LoginForm />
+        {/* <LandingBottons /> */}
+      </div>
     </div>
   );
 };
