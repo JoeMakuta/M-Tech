@@ -68,83 +68,83 @@ const LoginForm = () => {
   }, [inputPassword]);
 
   return (
-    <div className=" flex flex-col justify-start mt-[10vh] items-center gap-10 ">
+    <div className=" flex flex-col justify-start  items-center gap-5 ">
       <div className="flex flex-col items-center gap-4 text-center ">
-        <h1 className=" font-bold w-40 text-5xl tracking-tighter ">
-          Salut encore!
-        </h1>
+        <h1 className=" font-bold text-3xl tracking-tighter ">Salut encore!</h1>
         <p className="text-sm w-[80vw] sm:w-[50vw]">
           Bienvenu encore, vous nous aviez manqué!
         </p>
       </div>
       <form
-        className=" flex flex-col w-[350px] gap-4 "
+        className=" flex flex-col w-[85vw] lg:w-[25vw] gap-10 "
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
         }}
       >
-        <div className=" flex flex-col gap-1 ">
-          <p className=" text-sm ">Email :</p>
-          <div
-            className={
-              input_container +
-              (emailValid ? "border-[1px]" : " border-[1px] border-red-600 ")
-            }
-          >
-            <input
-              required
-              type="text"
-              className={input_style}
-              placeholder="Nom d'utilisateur ou email"
-              onChange={handleOnChangeEmail}
-            />
-          </div>
-          {emailValid ? null : (
-            <p className=" text-xs text-red-600 ">
-              Veillez saisir un email valide
-            </p>
-          )}
-        </div>
-        <div className=" flex flex-col gap-1 ">
-          <p className=" text-sm ">Mot de passe :</p>
-          <div
-            className={
-              input_container +
-              (passwordValid
-                ? " pr-4 border-[1px] "
-                : " pr-4 border-[1px] border-red-600 ")
-            }
-          >
-            <input
-              required
-              className={input_style}
-              type={showPassword ? "password" : "text"}
-              placeholder="**************"
-              onChange={handleOnPassword}
-            />
-
-            <div onClick={handlePassword}>
-              {showPassword ? (
-                <AiOutlineEye
-                  className=" cursor-pointer "
-                  size={30}
-                  color="#ADA2BF"
-                />
-              ) : (
-                <AiOutlineEyeInvisible
-                  size={30}
-                  className=" cursor-pointer"
-                  color="#ADA2BF"
-                />
-              )}
+        <div className=" flex flex-col gap-2 " >
+          <div className=" flex flex-col gap-1 ">
+            <p className=" text-xs ">Email :</p>
+            <div
+              className={
+                input_container +
+                (emailValid ? "border-[1px]" : " border-[1px] border-red-600 ")
+              }
+            >
+              <input
+                required
+                type="text"
+                className={input_style}
+                placeholder="Nom d'utilisateur ou email"
+                onChange={handleOnChangeEmail}
+              />
             </div>
+            {emailValid ? null : (
+              <p className=" text-xs text-red-600 ">
+                Veillez saisir un email valide
+              </p>
+            )}
           </div>
-          {passwordValid ? null : (
-            <p className=" text-xs text-red-600 ">
-              Veillez saisir un mot de passe
-            </p>
-          )}
+          <div className=" flex flex-col gap-1 ">
+            <p className=" text-xs ">Mot de passe :</p>
+            <div
+              className={
+                input_container +
+                (passwordValid
+                  ? " pr-4 border-[1px] "
+                  : " pr-4 border-[1px] border-red-600 ")
+              }
+            >
+              <input
+                required
+                className={input_style}
+                type={showPassword ? "password" : "text"}
+                placeholder="**************"
+                onChange={handleOnPassword}
+              />
+
+              <div onClick={handlePassword}>
+                {showPassword ? (
+                  <AiOutlineEye
+                    className=" cursor-pointer "
+                    size={30}
+                    color="#ADA2BF"
+                  />
+                ) : (
+                  <AiOutlineEyeInvisible
+                    size={30}
+                    className=" cursor-pointer"
+                    color="#ADA2BF"
+                  />
+                )}
+              </div>
+            </div>
+            {passwordValid ? null : (
+              <p className=" text-xs text-red-600 ">
+                Veillez saisir un mot de passe valide
+              </p>
+            )}
+          </div>
         </div>
 
         {/* <p className=' text-xs text-red-600 ' >
