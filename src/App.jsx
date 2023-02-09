@@ -3,6 +3,7 @@ import { createContext } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Landing from "./components/authentification/Landing/Landing";
 import LoginForm from "./components/authentification/loginForm/loginForm";
+import MainDashBoard from "./components/dashboard/mainDashboard";
 
 export const UserContext = createContext();
 
@@ -21,11 +22,11 @@ function App() {
         setLoginOrSignUp,
       }}
     >
-      <div className="font-MainFont bg-gradient-to-b from-white to-orange-100 h-[100vh] justify-center flex">
+      <div className="font-MainFont bg-gradient-to-b from-white to-amber-100 justify-center flex">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/login" element={<MainDashBoard />} />
           </Routes>
         </BrowserRouter>
       </div>
