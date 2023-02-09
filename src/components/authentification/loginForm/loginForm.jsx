@@ -68,9 +68,9 @@ const LoginForm = () => {
   }, [inputPassword]);
 
   return (
-    <div className=" flex flex-col justify-start mt-[10vh] items-center gap-10 ">
+    <div className=" flex flex-col justify-start  items-center gap-5 ">
       <div className="flex flex-col items-center gap-4 text-center ">
-        <h1 className=" font-bold w-40 text-5xl tracking-tighter ">
+        <h1 className=" font-bold text-3xl tracking-tighter ">
           Salut encore!
         </h1>
         <p className="text-sm w-[80vw] sm:w-[50vw]">
@@ -78,7 +78,7 @@ const LoginForm = () => {
         </p>
       </div>
       <form
-        className=" flex flex-col w-[350px] gap-4 "
+        className=" flex flex-col w-[85vw] lg:w-[25vw] gap-4 "
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
