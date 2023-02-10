@@ -16,7 +16,7 @@ const LandingBottons = () => {
           <button
             className={
               selected === "se_connecter"
-                ? "bg-amber-600  w-[50%] h-full border-[1px] animate-wiggle "
+                ? "bg-amber-600  w-[50%] h-full border-[1px] animate-leftIn "
                 : "  w-[50%] h-full "
             }
             onClick={() => {
@@ -30,7 +30,7 @@ const LandingBottons = () => {
             className={
               selected === "se_connecter"
                 ? "  w-[50%] h-full "
-                : "bg-amber-600  w-[50%] h-full border-[1px] animate-wiggle1 "
+                : "bg-amber-600  w-[50%] h-full border-[1px] animate-rightIn "
             }
             onClick={() => {
               setSelected("se_connecte");
