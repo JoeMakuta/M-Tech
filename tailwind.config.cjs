@@ -4,18 +4,23 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        wiggle: {
+        leftIn: {
           "0%": { transform: "translate(100%)" },
           "100%": { transform: "translate(0px)" },
         },
-        wiggle1: {
+        rightIn: {
           "0%": { transform: "translate(-100%)" },
           "100%": { transform: "translate(0px)" },
         },
+        upperIn: {
+          "0%": { transform: "translateY(50px)", opacity:"0" },
+          "100%": { transform: "translateY(0px)", opacity:"100"  },
+        },
       },
       animation: {
-        wiggle: "wiggle 0.2s ease-in-out",
-        wiggle1: "wiggle1 0.2s ease-in-out",
+        leftIn: "leftIn 0.2s ease-in-out",
+        rightIn: "rightIn 0.2s ease-in-out",
+        upperIn: "upperIn 0.2s ease-in-out",
       },
       fontFamily: {
         MainFont: ["Manrope"],
