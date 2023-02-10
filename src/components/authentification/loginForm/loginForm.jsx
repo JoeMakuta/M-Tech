@@ -68,7 +68,7 @@ const LoginForm = () => {
   }, [inputPassword]);
 
   return (
-    <div className=" flex flex-col justify-start  items-center gap-5 ">
+    <div className=" flex flex-col justify-start  items-center gap-5 animate-upperIn ">
       <div className="flex flex-col items-center gap-4 text-center ">
         <h1 className=" font-bold text-3xl tracking-tighter ">Salut encore!</h1>
         <p className="text-sm w-[80vw] sm:w-[50vw]">

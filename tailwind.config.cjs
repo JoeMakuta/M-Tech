@@ -12,11 +12,15 @@ module.exports = {
           "0%": { transform: "translate(-100%)" },
           "100%": { transform: "translate(0px)" },
         },
-        
+        upperIn: {
+          "0%": { transform: "translateY(50px)", opacity:"0" },
+          "100%": { transform: "translateY(0px)", opacity:"100"  },
+        },
       },
       animation: {
         leftIn: "leftIn 0.2s ease-in-out",
         rightIn: "rightIn 0.2s ease-in-out",
+        upperIn: "upperIn 0.2s ease-in-out",
       },
       fontFamily: {
         MainFont: ["Manrope"],
