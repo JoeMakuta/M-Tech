@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { TbLoader } from "react-icons/tb";
-import {RiLoader4Line} from "react-icons/ri"
+import { RiLoader4Line } from "react-icons/ri";
 import {
   button_style,
   input_container,
@@ -23,7 +23,7 @@ const LoginForm = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
 
-  const [isLoading, steIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePassword = () => {
     showPassword ? setShowPassword(false) : setShowPassword(true);
@@ -41,6 +41,7 @@ const LoginForm = () => {
     // check if the inputs are valid
 
     if (emailValid && passwordValid) {
+      setIsLoading(true);
       await fetch(VITE_SERVER_URI + "/admin/login", {
         method: "POST",
         headers: {
@@ -55,9 +56,11 @@ const LoginForm = () => {
           return data.json();
         })
         .then((data) => {
+          setIsLoading(false);
           console.log(data);
         })
         .catch((err) => {
+          setIsLoading(false);
           console.log(err);
         });
     }
@@ -158,8 +161,11 @@ const LoginForm = () => {
         <button
           type="submit"
           className={button_style + "items-center justify-center flex gap-4"}
+          disabled={isLoading}
         >
-          <RiLoader4Line className=" animate-spin "  size={25} />
+          {isLoading ? (
+            <RiLoader4Line className=" animate-spin " size={25} />
+          ) : null}
           <div>Se connecter</div>
         </button>
         <div className=" flex justify-center ">
