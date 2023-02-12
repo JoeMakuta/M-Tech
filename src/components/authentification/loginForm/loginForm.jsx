@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { TbLoader } from "react-icons/tb";
+import { RiLoader4Line } from "react-icons/ri";
 import {
   button_style,
   input_container,
@@ -21,6 +23,8 @@ const LoginForm = () => {
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handlePassword = () => {
     showPassword ? setShowPassword(false) : setShowPassword(true);
   };
@@ -37,6 +41,7 @@ const LoginForm = () => {
     // check if the inputs are valid
 
     if (emailValid && passwordValid) {
+      setIsLoading(true);
       await fetch(VITE_SERVER_URI + "/admin/login", {
         method: "POST",
         headers: {
@@ -51,9 +56,11 @@ const LoginForm = () => {
           return data.json();
         })
         .then((data) => {
+          setIsLoading(false);
           console.log(data);
         })
         .catch((err) => {
+          setIsLoading(false);
           console.log(err);
         });
     }
@@ -82,7 +89,7 @@ const LoginForm = () => {
           handleSubmit();
         }}
       >
-        <div className=" flex flex-col gap-2 " >
+        <div className=" flex flex-col gap-2 ">
           <div className=" flex flex-col gap-1 ">
             <p className=" text-xs ">Email :</p>
             <div
@@ -151,8 +158,15 @@ const LoginForm = () => {
                Incorrect email or password
             </p> */}
 
-        <button type="submit" className={button_style}>
-          Se connecter
+        <button
+          type="submit"
+          className={button_style + "items-center justify-center flex gap-4"}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <RiLoader4Line className=" animate-spin " size={25} />
+          ) : null}
+          <div>Se connecter</div>
         </button>
         <div className=" flex justify-center ">
           <a href="#" className="text-sm underline text-blue-500 ">
