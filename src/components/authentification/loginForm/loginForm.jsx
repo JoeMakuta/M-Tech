@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { TbLoader } from "react-icons/tb";
+import {RiLoader4Line} from "react-icons/ri"
 import {
   button_style,
   input_container,
@@ -20,6 +22,8 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
+
+  const [isLoading, steIsLoading] = useState(false);
 
   const handlePassword = () => {
     showPassword ? setShowPassword(false) : setShowPassword(true);
@@ -82,7 +86,7 @@ const LoginForm = () => {
           handleSubmit();
         }}
       >
-        <div className=" flex flex-col gap-2 " >
+        <div className=" flex flex-col gap-2 ">
           <div className=" flex flex-col gap-1 ">
             <p className=" text-xs ">Email :</p>
             <div
@@ -151,8 +155,12 @@ const LoginForm = () => {
                Incorrect email or password
             </p> */}
 
-        <button type="submit" className={button_style}>
-          Se connecter
+        <button
+          type="submit"
+          className={button_style + "items-center justify-center flex gap-4"}
+        >
+          <RiLoader4Line className=" animate-spin "  size={25} />
+          <div>Se connecter</div>
         </button>
         <div className=" flex justify-center ">
           <a href="#" className="text-sm underline text-blue-500 ">
