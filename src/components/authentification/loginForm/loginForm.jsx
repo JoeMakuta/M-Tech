@@ -42,27 +42,33 @@ const LoginForm = () => {
 
     if (emailValid && passwordValid) {
       setIsLoading(true);
-      await fetch(VITE_SERVER_URI + "/admin/login", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          userUniqueIdentifier: inputEmail,
-          passWord: inputPassword,
-        }),
-      })
-        .then((data) => {
-          return data.json();
+
+      try {
+        await fetch(VITE_SERVER_URI + "/admin/login", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            userUniqueIdentifier: inputEmail,
+            passWord: inputPassword,
+          }),
         })
-        .then((data) => {
-          setIsLoading(false);
-          console.log(data);
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          console.log(err);
-        });
+          .then((data) => {
+            return data.json();
+          })
+          .then((data) => {
+            setIsLoading(false);
+            console.log(data);
+          })
+          // .catch((err) => {
+          //   setIsLoading(false);
+          //   if (err instanceof TypeError) console.log("NetWork Error");
+          // });
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+      }
     }
   };
 
