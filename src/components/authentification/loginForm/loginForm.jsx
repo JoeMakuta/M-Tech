@@ -54,9 +54,7 @@ const LoginForm = () => {
             passWord: inputPassword,
           }),
         })
-          .then((data) => {
-            return data.json();
-          })
+          .then(data => data.json())
           .then((data) => {
             setIsLoading(false);
             console.log(data);
