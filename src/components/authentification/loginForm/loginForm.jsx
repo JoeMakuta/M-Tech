@@ -22,6 +22,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -54,17 +55,19 @@ const LoginForm = () => {
             passWord: inputPassword,
           }),
         })
-          .then(data => data.json())
+          .then((data) => data.json())
           .then((data) => {
             setIsLoading(false);
             console.log(data);
-          })
-          // .catch((err) => {
-          //   setIsLoading(false);
-          //   if (err instanceof TypeError) console.log("NetWork Error");
-          // });
+            setErrorMessage(data.message);
+          });
+        // .catch((err) => {
+        //   setIsLoading(false);
+        //   if (err instanceof TypeError) console.log("NetWork Error");
+        // });
       } catch (error) {
         setIsLoading(false);
+        setErrorMessage(error.message);
         console.log(error);
       }
     }
@@ -86,6 +89,7 @@ const LoginForm = () => {
           Bienvenu encore, vous nous aviez manqué!
         </p>
       </div>
+      {errorMessage}
       <form
         className=" flex flex-col w-[85vw] lg:w-[25vw] gap-10 "
         onSubmit={(e) => {
