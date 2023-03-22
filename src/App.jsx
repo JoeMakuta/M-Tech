@@ -26,7 +26,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<MainDashBoard />} />
+            <Route path="/dashboard" element={<MainDashBoard />} />
           </Routes>
         </BrowserRouter>
       </div>

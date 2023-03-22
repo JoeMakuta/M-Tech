@@ -12,6 +12,9 @@ import { useContext } from "react";
 import { validateEmail } from "../../../validation/email";
 import { useEffect } from "react";
 import { validatePassword } from "../../../validation/password";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const { VITE_SERVER_URI } = import.meta.env;
 
@@ -22,8 +25,11 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handlePassword = () => {
     showPassword ? setShowPassword(false) : setShowPassword(true);
@@ -42,27 +48,39 @@ const LoginForm = () => {
 
     if (emailValid && passwordValid) {
       setIsLoading(true);
-      await fetch(VITE_SERVER_URI + "/admin/login", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          userUniqueIdentifier: inputEmail,
-          passWord: inputPassword,
-        }),
-      })
-        .then((data) => {
-          return data.json();
+
+      try {
+        await fetch(VITE_SERVER_URI + "/admin/login", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            userUniqueIdentifier: inputEmail,
+            passWord: inputPassword,
+          }),
         })
-        .then((data) => {
-          setIsLoading(false);
-          console.log(data);
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          console.log(err);
-        });
+          .then((data) => data.json())
+          .then((data) => {
+            setIsLoading(false);
+            console.log(data);
+            if (data.status >= 200 && data.status <= 300) {
+              toast.success(data.message);
+              navigate("/dashboard");
+              localStorage.setItem("user", JSON.stringify(data.user));
+            } else {
+              toast.error(data.message);
+            }
+          });
+        // .catch((err) => {
+        //   setIsLoading(false);
+        //   if (err instanceof TypeError) console.log("NetWork Error");
+        // });
+      } catch (error) {
+        setIsLoading(false);
+        toast.error(error.message);
+        console.log(error);
+      }
     }
   };
 
@@ -76,6 +94,9 @@ const LoginForm = () => {
 
   return (
     <div className=" flex flex-col justify-start  items-center gap-5 animate-upperIn ">
+      <div>
+        <Toaster />
+      </div>
       <div className="flex flex-col items-center gap-4 text-center ">
         <h1 className=" font-bold text-3xl tracking-tighter ">Salut encore!</h1>
         <p className="text-sm w-[80vw] sm:w-[50vw]">
