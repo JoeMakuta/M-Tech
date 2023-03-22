@@ -12,6 +12,8 @@ import { useContext } from "react";
 import { validateEmail } from "../../../validation/email";
 import { useEffect } from "react";
 import { validatePassword } from "../../../validation/password";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const { VITE_SERVER_URI } = import.meta.env;
 
@@ -59,7 +61,11 @@ const LoginForm = () => {
           .then((data) => {
             setIsLoading(false);
             console.log(data);
-            setErrorMessage(data.message);
+            if (data.status >= 200 && data.status <= 300) {
+              toast.success(data.message);
+            } else {
+              toast.error(data.message);
+            }
           });
         // .catch((err) => {
         //   setIsLoading(false);
@@ -67,7 +73,7 @@ const LoginForm = () => {
         // });
       } catch (error) {
         setIsLoading(false);
-        setErrorMessage(error.message);
+        toast.error(error.message);
         console.log(error);
       }
     }
@@ -83,13 +89,15 @@ const LoginForm = () => {
 
   return (
     <div className=" flex flex-col justify-start  items-center gap-5 animate-upperIn ">
+      <div>
+        <Toaster />
+      </div>
       <div className="flex flex-col items-center gap-4 text-center ">
         <h1 className=" font-bold text-3xl tracking-tighter ">Salut encore!</h1>
         <p className="text-sm w-[80vw] sm:w-[50vw]">
           Bienvenu encore, vous nous aviez manqué!
         </p>
       </div>
-      {errorMessage}
       <form
         className=" flex flex-col w-[85vw] lg:w-[25vw] gap-10 "
         onSubmit={(e) => {
