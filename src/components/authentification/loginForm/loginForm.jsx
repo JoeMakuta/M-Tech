@@ -65,9 +65,8 @@ const LoginForm = () => {
             setIsLoading(false);
             console.log(data);
             if (data.status >= 200 && data.status <= 300) {
-              toast.success(data.message);
-              navigate("/dashboard");
               localStorage.setItem("user", JSON.stringify(data.user));
+              navigate("/dashboard");
             } else {
               toast.error(data.message);
             }
