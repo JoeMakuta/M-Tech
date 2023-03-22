@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { validatePassword } from "../../../validation/password";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const { VITE_SERVER_URI } = import.meta.env;
 
@@ -27,6 +28,8 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handlePassword = () => {
     showPassword ? setShowPassword(false) : setShowPassword(true);
@@ -63,6 +66,8 @@ const LoginForm = () => {
             console.log(data);
             if (data.status >= 200 && data.status <= 300) {
               toast.success(data.message);
+              navigate("/dashboard");
+              localStorage.setItem("user", JSON.stringify(data.user));
             } else {
               toast.error(data.message);
             }
