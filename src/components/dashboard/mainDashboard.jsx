@@ -4,18 +4,24 @@ import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 import { DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+const { VITE_SERVER_URI } = import.meta.env;
 
-const MainDashBoard = () => {
+const MainDashBoard = async () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
+  const [products, setProducts] = useState([]);
+
+  // const loginUser = async () => {
+  //   let Josh = await axios.get(VITE_SERVER_URI + "/product");
+  //   console.log(Josh);
+  // };
 
   useEffect(() => {
     if (!currentUser) {
       navigate("/");
-    }else{
-      
     }
     toast.success("Successfully logged in as " + currentUser?.userName);
   }, []);
