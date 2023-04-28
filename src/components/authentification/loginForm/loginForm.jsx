@@ -15,12 +15,19 @@ import { validatePassword } from "../../../validation/password";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const { VITE_SERVER_URI } = import.meta.env;
 
 const LoginForm = () => {
-  const { inputEmail, setInputEmail, inputPassword, setInputPassword } =
-    useContext(UserContext);
+  const {
+    inputEmail,
+    setInputEmail,
+    inputPassword,
+    setInputPassword,
+    currentUser,
+    setCurrentUser,
+  } = useContext(UserContext);
 
   const [showPassword, setShowPassword] = useState(true);
   const [emailValid, setEmailValid] = useState(true);
@@ -50,34 +57,25 @@ const LoginForm = () => {
       setIsLoading(true);
 
       try {
-        await fetch(VITE_SERVER_URI + "/admin/login", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
+        await axios
+          .post(VITE_SERVER_URI + "/admin/login", {
             userUniqueIdentifier: inputEmail,
             passWord: inputPassword,
-          }),
-        })
-          .then((data) => data.json())
+          })
           .then((data) => {
             setIsLoading(false);
             console.log(data);
             if (data.status >= 200 && data.status <= 300) {
-              localStorage.setItem("user", JSON.stringify(data.user));
+              localStorage.setItem("user", JSON.stringify(data.data.user));
+              setCurrentUser(data.data.user);
               navigate("/dashboard");
             } else {
-              toast.error(data.message);
+              toast.error(data.response.data.message);
             }
           });
-        // .catch((err) => {
-        //   setIsLoading(false);
-        //   if (err instanceof TypeError) console.log("NetWork Error");
-        // });
       } catch (error) {
         setIsLoading(false);
-        toast.error(error.message);
+        toast.error(error?.response?.data?.message || error.message);
         console.log(error);
       }
     }
@@ -111,7 +109,7 @@ const LoginForm = () => {
       >
         <div className=" flex flex-col gap-2 ">
           <div className=" flex flex-col gap-1 ">
-            <p className=" text-xs ">Email :</p>
+            <p className=" text-xs ">Username or Email :</p>
             <div
               className={
                 input_container +

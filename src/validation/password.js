@@ -4,7 +4,5 @@ export const validatePassword = (password) => {
   if (password == "") return true;
 
   if (regex.test(password)) return true;
-  else {
-    return false;
-  }
+  else return false;
 };
