@@ -3,11 +3,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { UserContext } from "../../App";
 import { useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const { VITE_SERVER_URI } = import.meta.env;
 
 const Dashboard = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const getProducts = async () => {
     const response = await axios.get(VITE_SERVER_URI + "/product", {
@@ -19,8 +21,12 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getProducts();
-    toast.success("Welcome " + currentUser?.userName);
+    if (currentUser?.token) {
+      getProducts();
+      toast.success("Welcome " + currentUser?.userName);
+    } else {
+      navigate("/");
+    }
   }, []);
 
   return (

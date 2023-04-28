@@ -12,7 +12,9 @@ import { useNavigate } from "react-router-dom";
 const { VITE_SERVER_URI } = import.meta.env;
 
 const Landing = () => {
-  const { loginOrSignUp, setLoginOrSignUp } = useContext(UserContext);
+  const { loginOrSignUp, setLoginOrSignUp, currentUser, setCurrentUser } =
+    useContext(UserContext);
+
   const navigate = useNavigate();
 
   const getProducts = async (user) => {
@@ -23,6 +25,7 @@ const Landing = () => {
     });
     console.log("The first products : ", response);
     if (response.data.data[0]) {
+      setCurrentUser(user);
       navigate("/dashboard");
     }
   };
