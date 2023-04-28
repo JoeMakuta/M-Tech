@@ -124,7 +124,7 @@ const LoginForm = () => {
                 onChange={handleOnChangeEmail}
               />
             </div>
-            {emailValid ? null : (
+            {!emailValid && (
               <p className=" text-xs text-red-600 ">
                 Veillez saisir un email valide
               </p>
@@ -164,7 +164,7 @@ const LoginForm = () => {
                 )}
               </div>
             </div>
-            {passwordValid ? null : (
+            {!passwordValid && (
               <p className=" text-xs text-red-600 ">
                 Veillez saisir un mot de passe valide
               </p>
